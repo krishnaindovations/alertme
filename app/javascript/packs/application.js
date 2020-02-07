@@ -21,6 +21,7 @@ require('datatables.net-bs4')
 
 
 import $ from 'jquery';
+import "stylesheets/application";
 global.$ = jQuery;
 import 'bootstrap'
 
