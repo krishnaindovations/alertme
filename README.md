@@ -37,3 +37,9 @@ $ rake db:seed
 $ rails s
 
 You will be Good to open your app now :)
+
+
+## Existing user to login
+
+User ID : hari@test.com
+Password : 123456
