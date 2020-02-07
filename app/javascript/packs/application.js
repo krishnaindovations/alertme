@@ -22,8 +22,12 @@ require('datatables.net-bs4')
 
 import $ from 'jquery';
 global.$ = jQuery;
+import 'bootstrap'
 
 document.addEventListener("turbolinks:load", () => {
   $('[data-toggle="tooltip"]').tooltip()
 })
-import 'bootstrap'
+
+$(document).ready(function() {
+  $('#all-shows-list').DataTable();
+});
