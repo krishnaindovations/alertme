@@ -10,10 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_121946) do
+ActiveRecord::Schema.define(version: 2020_01_30_124506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "channel_id", null: false
+    t.bigint "tvshow_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_favourites_on_channel_id"
+    t.index ["tvshow_id"], name: "index_favourites_on_tvshow_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
+  end
+
+  create_table "homes", force: :cascade do |t|
+    t.string "index"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tvshows", force: :cascade do |t|
+    t.string "name"
+    t.datetime "telecast_time"
+    t.bigint "channel_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["channel_id"], name: "index_tvshows_on_channel_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +59,8 @@ ActiveRecord::Schema.define(version: 2020_01_30_121946) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favourites", "channels"
+  add_foreign_key "favourites", "tvshows"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "tvshows", "channels"
 end
