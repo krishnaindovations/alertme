@@ -5,8 +5,7 @@ class TvshowsController < ApplicationController
   after_action :get_list
 
   def mark_favourite
-    fav_rec = Favourite.create(user_id: current_user.id, channel_id: @tvshow.channel_id, tvshow_id: @tvshow.id )
-    @tvshow.subscribers << fav_rec
+    Favourite.create(user_id: current_user.id, channel_id: @tvshow.channel_id, tvshow_id: @tvshow.id )
   end
 
   def unmark_favourite
