@@ -1,0 +1,12 @@
+<tr>
+  <td><%= tvshow.channel.name.capitalize %></td>
+  <td><%= tvshow.name %></td>
+  <td><%= tvshow.telecast_time %></td>
+  <td>
+    <% if favourite_show? tvshow %>
+      <%= link_to "Remove Favourite", unmark_favourite_tvshow_path(tvshow), class: "btn btn-primary btn-lg", remote: true %>
+    <% else %>
+      <%= link_to "Mark Favourite", mark_favourite_tvshow_path(tvshow), class: "btn btn-primary btn-lg", remote: true %>
+    <% end %>
+  </td>
+</tr>
